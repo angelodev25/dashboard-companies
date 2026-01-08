@@ -12,7 +12,7 @@
  */
 
 import * as runtime from "@prisma/client/runtime/client"
-import type * as Prisma from "./prismaNamespace.ts"
+import type * as Prisma from "./prismaNamespace.js"
 
 
 const config: runtime.GetPrismaClientConfig = {
@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.2.0",
   "engineVersion": "0c8ef2ce45c83248ab3df073180d5eda9e8be7a3",
   "activeProvider": "postgresql",
-  "inlineSchema": "generator client {\n  provider            = \"prisma-client\"\n  output              = \"../src/generated/prisma\"\n  engineType          = \"library\"\n  moduleFormat        = \"esm\"\n  importFileExtension = \"ts\"\n}\n\ndatasource db {\n  provider     = \"postgresql\"\n  relationMode = \"prisma\"\n}\n\nmodel Company {\n  id           String    @id @default(uuid())\n  userId       String\n  name         String\n  description  String?\n  profileImage String\n  rif          String\n  phone        String\n  country      String\n  website      String\n  createdAt    DateTime  @default(now())\n  updatedAt    DateTime  @updatedAt\n  contacts     Contact[]\n  events       Event[]\n}\n\nmodel Contact {\n  id        String   @id @default(uuid())\n  companyId String?\n  name      String\n  role      String\n  email     String\n  phone     String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  company   Company? @relation(fields: [companyId], references: [id], onDelete: Cascade)\n\n  @@index([companyId])\n}\n\nmodel Event {\n  id         String   @id @default(uuid())\n  companyId  String\n  title      String\n  start      String\n  allDay     Boolean\n  timeFormat String\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n  company    Company  @relation(fields: [companyId], references: [id])\n\n  @@index([companyId])\n}\n",
+  "inlineSchema": "generator client {\n  provider            = \"prisma-client\"\n  output              = \"../src/generated/prisma\"\n  engineType          = \"library\"\n  moduleFormat        = \"esm\"\n  importFileExtension = \"js\"\n}\n\ndatasource db {\n  provider     = \"postgresql\"\n  relationMode = \"prisma\"\n}\n\nmodel Company {\n  id           String    @id @default(uuid())\n  userId       String\n  name         String\n  description  String?\n  profileImage String\n  rif          String\n  phone        String\n  country      String\n  website      String\n  createdAt    DateTime  @default(now())\n  updatedAt    DateTime  @updatedAt\n  contacts     Contact[]\n  events       Event[]\n}\n\nmodel Contact {\n  id        String   @id @default(uuid())\n  companyId String?\n  name      String\n  role      String\n  email     String\n  phone     String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  company   Company? @relation(fields: [companyId], references: [id], onDelete: Cascade)\n\n  @@index([companyId])\n}\n\nmodel Event {\n  id         String   @id @default(uuid())\n  companyId  String\n  title      String\n  start      String\n  allDay     Boolean\n  timeFormat String\n  createdAt  DateTime @default(now())\n  updatedAt  DateTime @updatedAt\n  company    Company  @relation(fields: [companyId], references: [id])\n\n  @@index([companyId])\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},

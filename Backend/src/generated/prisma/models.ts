@@ -8,7 +8,7 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Company.ts'
-export type * from './models/Contact.ts'
-export type * from './models/Event.ts'
-export type * from './commonInputTypes.ts'
+export type * from './models/Company.js'
+export type * from './models/Contact.js'
+export type * from './models/Event.js'
+export type * from './commonInputTypes.js'
