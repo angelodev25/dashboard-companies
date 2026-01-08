@@ -1,5 +1,5 @@
 import express from 'express';
-import { PrismaClient } from './generated/prisma/client.ts';
+import { PrismaClient } from './generated/prisma/client.js';
 import { Pool } from 'pg';
 import { PrismaPg } from '@prisma/adapter-pg';
 import cors from 'cors';
