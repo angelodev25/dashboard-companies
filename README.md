@@ -6,7 +6,7 @@ Un Dashboard muy dinámico que simula la representación y manejo de datos de co
 
 ## *Desarrollo*
 
-Completamente en React + Vite y Typescript como variante, inicialmente pensado para ser en Next.js pero por dificultades de rendimiento se cambió a Vite (Mucho más rápido).
+Completamente en React + Vite y Typescript como variante, inicialmente pensado para ser en Next.js pero por dificultades de rendimiento se cambió a Vite (Mucho más rápido). Y Tailwind CSS.
 
 ---
 
