@@ -1,0 +1,18 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "moduleResolution": "Node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@globals/*": ["./src/components/globals/*"],
+      "@locals/*": ["./src/components/locals/*"],
+      "@lib/*": ["./src/lib/*"],
+    }
+  }
+}

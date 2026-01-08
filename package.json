@@ -1,0 +1,27 @@
+{
+  "name": "dashboard-v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev:front": "cd ./Fronted && npm run dev",
+    "dev:back": "cd ./Backend && npm run dev",
+    "dev": "concurrently \"npm run dev:front\" \"npm run dev:back\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angelodev25/dashboard-companies.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/angelodev25/dashboard-companies/issues"
+  },
+  "homepage": "https://github.com/angelodev25/dashboard-companies#readme",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
