@@ -36,9 +36,12 @@ Las siguientes variables son requeridas para el funcionamiento de la aplicación
 
 ### Fronted
 
-> VITE_CLERK_PUBLISHABLE_KEY <
-> CLERK_SECRET_KEY <
+> VITE_CLERK_PUBLISHABLE_KEY
+
+> CLERK_SECRET_KEY
+
 > VITE_SUPABASE_URL
+
 > VITE_SUPABASE_ANON_KEY
 
 ## Nota
