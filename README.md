@@ -48,4 +48,6 @@ Las siguientes variables son requeridas para el funcionamiento de la aplicación
 
 ## Nota
 
-La aplicación aún necesita una mejora gráfica importante, se considerará después.
+- Aún falta por desarrollar las páginas settings y Security.
+
+- La aplicación aún necesita una mejora gráfica importante, se considerará después.
