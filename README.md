@@ -44,6 +44,8 @@ Las siguientes variables son requeridas para el funcionamiento de la aplicación
 
 > VITE_SUPABASE_ANON_KEY
 
+---
+
 ## Nota
 
 La aplicación aún necesita una mejora gráfica importante, se considerará después.
