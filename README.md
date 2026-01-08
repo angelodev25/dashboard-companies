@@ -26,6 +26,21 @@ Al clonar el repositorio ejecutar `npm install`, al terminar sólo ejecutar `npm
 
 ---
 
+## Variables de entorno
+
+Las siguientes variables son requeridas para el funcionamiento de la aplicación
+
+### En el Backend
+
+>DATABASE_URL
+
+### Fronted
+
+> VITE_CLERK_PUBLISHABLE_KEY 
+> CLERK_SECRET_KEY
+> VITE_SUPABASE_URL
+> VITE_SUPABASE_ANON_KEY
+
 ## Nota
 
 La aplicación aún necesita una mejora gráfica importante, se considerará después.
