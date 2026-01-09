@@ -99,9 +99,11 @@ app.get('/companies', async (req, res) => {
 
 app.get('/company/:id', async (req, res) => {
   try {
-    const userId = req.body.userId
+    const userId = req.query.userId
     const companyId = req.params.id
-    if (!userId) {
+    const uID = userId?.toString()
+
+    if (!uID) {
       return res.status(401).json({
         error: "Unauthorized"
       })
@@ -112,7 +114,7 @@ app.get('/company/:id', async (req, res) => {
     const company = await prisma.company.findUnique({
       where: {
         id: companyId,
-        userId
+        userId: uID
       }
     })
     res.json({
