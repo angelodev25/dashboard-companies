@@ -13,6 +13,7 @@ export default function EditCompany() {
 	const [company, setCompany] = useState < CompanyType | null > (null)
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState < string | null > (null)
+	const API_URL = import.meta.env.VITE_API_URL
 
 	if (!id) {
 		console.log("No hay id en la url")
@@ -28,8 +29,8 @@ export default function EditCompany() {
 			setLoading(true)
 			setError(null)
 			
-			const response = await axios.get(`http://localhost:3000/company/${id}`, {
-				data: { userId: userId }
+			const response = await axios.get(`${API_URL}/company/${id}`, {
+				params: { userId: userId }
 			})
 		
 			if (response.data.success && response.data.company) {

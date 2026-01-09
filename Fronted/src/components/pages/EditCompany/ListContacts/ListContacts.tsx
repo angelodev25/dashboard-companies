@@ -14,13 +14,14 @@ export function ListContacts(props: ListContactProps) {
 	const { userId } = useAuth()
 	const [contacts, setContacts] = useState < Contact[] > ([])
 	const [loading, setLoading] = useState(false)
+	const API_URL = import.meta.env.VITE_API_URL
 
 	if (!userId) return <Navigate to="/sign-in" />
 
 	const listContacts = async () => {
 		try {
 			setLoading(true)
-			const response = await axios.get(`http://localhost:3000/contacts/${company.id}`)
+			const response = await axios.get(`${API_URL}/contacts/${company.id}`)
 
 			if (!response.data.contacts) {
 				return

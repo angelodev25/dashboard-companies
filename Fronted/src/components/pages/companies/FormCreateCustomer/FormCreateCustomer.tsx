@@ -38,6 +38,7 @@ export function FormCreateCustomer(props: FormCreateCustomerProps) {
 	const { user } = useUser();
 	const { getClient } = useSupabase()
 	const { userId } = useAuth()
+	const API_URL = import.meta.env.VITE_API_URL
 	
 	const form = useForm < z.infer < typeof formSchema >> ({
 		resolver: zodResolver(formSchema),
@@ -75,7 +76,7 @@ export function FormCreateCustomer(props: FormCreateCustomerProps) {
 
 		const filePath = `${user.id}/${Date.now()}-${file.name}`
 
-		const { data, error } = await client.storage
+		const { error } = await client.storage
 			.from("uploads")
 			.upload(filePath, file);
 
@@ -84,7 +85,6 @@ export function FormCreateCustomer(props: FormCreateCustomerProps) {
 			console.log(error)
 		} else {
 			toast.success("Image uploaded!")
-			console.log("archivo subido: " + data)	
 			setPhotoUploaded(true)
 			getImageUrl(filePath, client)
 		}
@@ -96,7 +96,6 @@ export function FormCreateCustomer(props: FormCreateCustomerProps) {
 			.getPublicUrl(filePath); 
 
 		setImageUrl(data.publicUrl);
-		console.log("Url de la foto: " + data.publicUrl);
 	}
 
 	const { isValid } = form.formState
@@ -117,9 +116,8 @@ export function FormCreateCustomer(props: FormCreateCustomerProps) {
 				return
 			};
 
-			const res = await axios.post('http://127.0.0.1:3000/company', { userId, ...values });
+			await axios.post(`${API_URL}/company`, { userId, ...values });
 			toast.success("Company created")
-			console.log(JSON.stringify(res.data))
 
 			setOpenModalCreate(false)
 			if (onSuccess) {

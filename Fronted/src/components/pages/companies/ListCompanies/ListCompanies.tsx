@@ -12,13 +12,14 @@ export function ListCompanies(props: { refreshKey: number; }) {
 	const { userId } = useAuth();
 	const [companies, setCompanies] = useState < CompanyType[] > ([])
 	const [loading, setLoading] = useState(false)
+	const API_URL = import.meta.env.VITE_API_URL
 
 	if (!userId) return <Navigate to="/sign-in" />
 
 	const makeRequest = async () => {
 		try {
 			setLoading(true)
-			const res = await axios.get("http://localhost:3000/companies", {
+			const res = await axios.get(`${API_URL}/companies`, {
 				params: { userId: userId }
 			})
 			setCompanies(Array.isArray(res.data.companies) ? res.data.companies : [res.data.companies]);

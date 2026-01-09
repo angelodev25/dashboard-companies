@@ -8,10 +8,11 @@ import { toast } from "sonner";
 export function Footer(props: FooterProps) {
 	const { companyId } = props
 	const navigate = useNavigate()
+	const API_URL = import.meta.env.VITE_API_URL
 
 	const onDeleteCompany = async () => {
 		try {
-			await axios.delete(`http://localhost:3000/company/${companyId}`)
+			await axios.delete(`${API_URL}/company/${companyId}`)
 			toast("Company Deleted")
 			navigate(-1)
 		} catch (e: any) {

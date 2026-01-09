@@ -30,6 +30,7 @@ function FormContact(props: FormContactProps) {
    const { setOpen, onSuccess } = props
    const params = useParams()
    const { userId } = useAuth()
+   const API_URL = import.meta.env.VITE_API_URL
 
    const form = useForm < z.infer < typeof formSchema >> ({
       resolver: zodResolver(formSchema),
@@ -57,10 +58,7 @@ function FormContact(props: FormContactProps) {
             return <Navigate to="/sign-in" />
          }
 
-         console.log(params.id)
-
-         const contact = await axios.post(`http://localhost:3000/company/${params.id}/contact`, values)
-         console.log(contact)
+         await axios.post(`${API_URL}/company/${params.id}/contact`, values)
          toast.success("Contact Created")
          setOpen(false)
          if (onSuccess) {

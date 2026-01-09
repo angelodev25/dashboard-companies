@@ -5,6 +5,7 @@ import { CardSummary } from "@/components/locals/CardSummary"
 import { BookOpenCheck, UsersRound, Waypoints } from "lucide-react";
 import { TotalSuscribers } from "@/components/locals/TotalSuscribers";
 import { ListIntegrations } from "@/components/locals/ListIntegrations";
+import { useEffect } from "react";
 // importaciones desde lucide-react para usar iconos
 
 // componente principal de datos

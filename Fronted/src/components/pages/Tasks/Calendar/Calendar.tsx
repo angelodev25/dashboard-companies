@@ -17,9 +17,10 @@ import { useAuth } from "@clerk/clerk-react";
 
 
 export function Calendar(props: CalendarProps) {
-	const { companies, events } = props
+	const { companies, events, setOnSaveNewEvent, onSaveNewEvent } = props
+	const API_URL = import.meta.env.VITE_API_URL
 	const [open, setOpen] = useState(false)
-	const [onSaveNewEvent, setOnSaveNewEvent] = useState(false)
+	
 	const [selectedItem, setSelectedItem] = useState < DateSelectArg > ()
 	const navigate = useNavigate()
 	const { userId } = useAuth()
@@ -49,12 +50,9 @@ export function Calendar(props: CalendarProps) {
 				timeFormat: 'H(:mm)'
 			}
 
-			console.log(newEventPrisma)
-
-			axios.post(`http://localhost:3000/event/${newEvent.companySelected.id}`, { newEventPrisma, userId })
+			axios.post(`${API_URL}/event/${newEvent.companySelected.id}`, { newEventPrisma, userId })
 				.then(() => {
 					toast.success("Event created")
-					navigate(0)
 				})
 				.catch((error) => {
 					toast.error("Error", { description: error.message })
@@ -79,7 +77,7 @@ export function Calendar(props: CalendarProps) {
 	const handleEventClick = async (selected: { event: { _def: { title: string; publicId: string; }; }; }) => {
 		if (window.confirm(`Are you sure you want to delete this event ${selected.event._def.title}?`)) {
 			try {
-				await axios.delete(`http://localhost:3000/event/${selected.event._def.publicId}`, {
+				await axios.delete(`${API_URL}/event/${selected.event._def.publicId}`, {
 					params: { userId: userId }
 				});
 				toast.success("Event Deleted")

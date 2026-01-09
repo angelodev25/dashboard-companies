@@ -13,12 +13,11 @@ const PORT = process.env.PORT || 3000;
 const connectionString = process.env.DATABASE_URL;
 const pool = new Pool({ connectionString });
 const adapter = new PrismaPg(pool);
-const prisma = new PrismaClient({ adapter }); // ← Pasa el adaptador aquí
+const prisma = new PrismaClient({ adapter });
 
 app.use(express.json());
 app.use(cors())
 
-// Ruta para crear una compañía (POST /company)
 app.post('/company', async (req, res) => {
   console.log("en servidor")
   try {
@@ -73,7 +72,6 @@ app.post('/company', async (req, res) => {
   }
 });
 
-// Ruta para listar compañías (GET /companies)
 app.get('/companies', async (req, res) => {
   try {
     const userId = req.query.userId

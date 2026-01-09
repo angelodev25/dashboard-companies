@@ -13,6 +13,8 @@ export default function Tasks() {
 	const [error, setError] = useState(null)
 	const [companies, setCompanies] = useState < CompanyType[] > ([])
 	const [events, setEvents] = useState < Event[] > ([])
+	const [onSaveNewEvent, setOnSaveNewEvent] = useState(false)
+	const API_URL = import.meta.env.VITE_API_URL
 
 	if (!userId) {
 		toast.warning("Debes estar autenticado")
@@ -21,12 +23,12 @@ export default function Tasks() {
 
 	const makeRequests = async () => {
 		try {
-			const res_comp = await axios.get("http://localhost:3000/companies", {
+			const res_comp = await axios.get(`${API_URL}/companies`, {
 				params: { userId: userId },
 			})
 			setCompanies(Array.isArray(res_comp.data.companies) ? res_comp.data.companies : [res_comp.data.companies]);
 
-			const res_events = await axios.get("http://localhost:3000/events")
+			const res_events = await axios.get(`${API_URL}/events`)
 			setEvents(Array.isArray(res_events.data.events) ? res_events.data.events : [res_events.data.events])
 
 		} catch (e: any) {
@@ -36,7 +38,7 @@ export default function Tasks() {
 
 	useEffect(() => {
 		makeRequests()
-	}, [])
+	}, [onSaveNewEvent])
 
 	if (error) {
 		return (
@@ -54,7 +56,7 @@ export default function Tasks() {
 
 	return (
 		<div>
-			<Calendar companies={companies} events={events} />
+			<Calendar companies={companies} events={events} setOnSaveNewEvent={setOnSaveNewEvent} onSaveNewEvent={onSaveNewEvent} />
 		</div>
 	)
 }

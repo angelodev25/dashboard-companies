@@ -19,7 +19,7 @@ import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { useSupabase } from '@/utils/supabaseClient';
 import { Textarea } from '@/components/ui/textarea';
-import { useUser } from '@clerk/clerk-react';
+import { useAuth, useUser } from '@clerk/clerk-react';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
 export function CompanyForm(props: CompanyFormProps) {
@@ -29,6 +29,8 @@ export function CompanyForm(props: CompanyFormProps) {
 	const { getClient } = useSupabase()
 	const [file, setFile] = useState < File | null > (null)
 	const { user } = useUser()
+	const { userId } = useAuth()
+	const API_URL = import.meta.env.VITE_API_URL
 
 	const form = useForm < z.infer < typeof formSchema >> ({
 		resolver: zodResolver(formSchema),
@@ -67,7 +69,7 @@ export function CompanyForm(props: CompanyFormProps) {
 
 		const filePath = `${user.id}/${Date.now()}-${file.name}`
 
-		const { data, error } = await client.storage
+		const { error } = await client.storage
 			.from("uploads")
 			.upload(filePath, file);
 
@@ -76,7 +78,6 @@ export function CompanyForm(props: CompanyFormProps) {
 			console.log(error)
 		} else {
 			toast.success("Image uploaded!")
-			console.log("archivo subido: " + data)	
 			setPhotoUploaded(true)
 			getImageUrl(filePath, client)
 		}
@@ -88,7 +89,6 @@ export function CompanyForm(props: CompanyFormProps) {
 			.getPublicUrl(filePath); 
 
 		setImageUrl(data.publicUrl);
-		console.log("Url de la foto: " + data.publicUrl);
 	}
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -102,7 +102,7 @@ export function CompanyForm(props: CompanyFormProps) {
 					loading: "Updating changes...",
 				}
 			)
-			await axios.put(`http://localhost:3000/company/${company.id}`, values)
+			await axios.put(`${API_URL}/company/${company.id}`, { values, userId })
 			toast.success("Company updated successfully")
 		} catch (e: any) {
 			toast.error('Something went wrong', { description: e.message })
