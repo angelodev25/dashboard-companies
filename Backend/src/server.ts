@@ -129,17 +129,16 @@ app.get('/company/:id', async (req, res) => {
 
 app.put('/company/:companyId', async (req, res) => {
   try {
-    const userId = req.query.userId
-    const uID = userId?.toString()
     const companyId = req.params.companyId
     const updateData = req.body
+    const userId = req.body.userId
 
-    if (!uID) return res.status(401)
+    if (!userId) return res.status(401)
 
     const existingCompany = await prisma.company.findUnique({
       where: {
         id: companyId,
-        userId: uID
+        userId: userId
       }
     })
     if (!existingCompany) {
