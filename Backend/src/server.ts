@@ -130,7 +130,7 @@ app.get('/company/:id', async (req, res) => {
 app.put('/company/:companyId', async (req, res) => {
   try {
     const companyId = req.params.companyId
-    const updateData = req.body
+    const updateData = req.body.values
     const userId = req.body.userId
 
     if (!userId) return res.status(401)
